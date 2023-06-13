@@ -17,7 +17,7 @@ export class AnunciosComponent implements OnInit {
     this.formGroupAnuncio = FormBuilder.group({
       id : [''],
       titulo : [''],
-      image : [''],
+      imagem : [''],
       info : [''],
       data : [''],
       contato : ['']
@@ -27,6 +27,19 @@ export class AnunciosComponent implements OnInit {
       this.loadAnuncios();
     }
     loadAnuncios() {
+
+        this.service.getAnuncios().subscribe(
+
+          {
+
+            next: dados => this.anuncios = dados,
+
+            error: (erro) => console.log("Houve um erro ao chamar o EndPoint." + erro)
+
+          }
+
+        )
+
     }
 
     saveAnuncios(){
